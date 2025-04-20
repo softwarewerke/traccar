@@ -60,6 +60,11 @@ public class SecurityRequestFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) {
 
+        if (requestContext.getUriInfo().getPath().equals("my-config")) {
+            // N.B. This is an open endpoint, secured by uniqueId
+            return;
+        }
+
         if (requestContext.getMethod().equals("OPTIONS")) {
             return;
         }
